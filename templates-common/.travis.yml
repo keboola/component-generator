@@ -1,0 +1,14 @@
+sudo: required
+language: bash
+services:
+  - docker
+before_script:
+  - docker build . --tag=my-component
+after_success:
+  - docker images
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ./deploy.sh
+  on:
+    tags: true

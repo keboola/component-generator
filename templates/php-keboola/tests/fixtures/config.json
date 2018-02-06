@@ -1,0 +1,11 @@
+{
+    "parameters": {
+        "foo": "bar"
+    },
+    "processors": {
+        "before": [],
+        "after": []
+    },
+    "image_parameters": [],
+    "action": "run"
+}

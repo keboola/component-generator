@@ -1,0 +1,25 @@
+{
+    "name": "keboola/component-generator",
+    "type": "project",
+    "description": "KBC Application Component Generator",
+    "authors": [
+        {
+            "name": "Keboola",
+            "email": "devel@keboola.com"
+        }
+    ],	
+    "require": {
+        "php": "^7.1",
+        "symfony/process": "^4.0",
+        "symfony/finder": "^4.0",
+        "symfony/console": "^4.0",
+        "symfony/filesystem": "^4.0"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Keboola\\AppSkeleton\\": "src/",
+            "Keboola\\AppSkeleton\\Tests\\": "Tests/"
+        }
+    }    
+}
