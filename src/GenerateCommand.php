@@ -67,7 +67,7 @@ class GenerateCommand extends Command
             $finder = new Finder();
             foreach ($finder->directories()->in('/init-code/templates/')->sortByName()->depth('== 0') as $dir) {
                 /** @var SplFileInfo $dir */
-                $dirs[] = $dir->getBasename();
+                $dirs[] = $dir->getBasename(6);
             }
             $helper = $this->getHelper('question');
             $question = new ChoiceQuestion('Choose a template:', $dirs);
@@ -80,7 +80,7 @@ class GenerateCommand extends Command
             $finder = new Finder();
             $output->writeln("Copying common files.");
             /** @var SplFileInfo $file */
-            foreach ($finder->files()->in('/init-code/templates-common/')->files() as $file) {
+            foreach ($finder->files()->in('/init-code/templates-common/')->files()->ignoreDotFiles(false) as $file) {
                 if ($input->getOption('update')) {
                     $question = new ConfirmationQuestion(
                         'Overwrite file <info>' . $file->getRelativePathname() . '</info> ? ',
@@ -98,7 +98,7 @@ class GenerateCommand extends Command
             foreach ($finder->files()->in('/init-code/templates/' . $template)->directories() as $directory) {
                 $fs->mkdir($directory->getRelativePathname());
             }
-            foreach ($finder->files()->in('/init-code/templates/' . $template)->files() as $file) {
+            foreach ($finder->files()->in('/init-code/templates/' . $template)->files()->ignoreDotFiles(false) as $file) {
                 if ($input->getOption('update')) {
                     $question = new ConfirmationQuestion(
                         'Overwrite file <info>' . $file->getRelativePathname() . '</info> ? ',
