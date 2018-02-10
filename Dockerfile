@@ -4,7 +4,10 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+        automake \
         git \
+        libltdl-dev \
+        libtool \
         ruby \
         ruby-dev \
         unzip \

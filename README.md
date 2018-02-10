@@ -5,9 +5,9 @@ You need [Docker]() to run this tool.
 ## Running
 Run:
 
-	docker run -i -t --volume=/code/to/repository/:/code/ quay.io/keboola/component-generator
+	docker run -i -t --volume=/path/to/repository/:/code/ quay.io/keboola/component-generator
 
-The path `/code/to/repository/` is expected to contain an empty [Git]() repository.
+The path `/path/to/repository/` is expected to contain an empty [Git]() repository.
 
 Options:
 `--setup-only` -- only run setup of Travis deployment
@@ -15,4 +15,4 @@ Options:
 
 Pass options in the command line like this:
 
-	docker run -i -t --volume=/code/to/repository/:/code/ quay.io/keboola/component-generator --setup-only
+	docker run -i -t --volume=/path/to/repository/:/code/ quay.io/keboola/component-generator --setup-only

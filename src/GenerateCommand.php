@@ -34,10 +34,16 @@ class GenerateCommand extends Command
         $output->writeln('<info>Hi.</info>');
         $process = (new Process('git config --get remote.origin.url'));
         $process->run();
+        $url = $process->getOutput();
         if ($process->getExitCode() !== 0) {
-            $output->writeln("The <info>/code/</info> directory does not seem to be a GIT repository.");
+            $output->writeln("The <info>/code/</info> directory does not seem to be a checked out git repository.");
             return;
         }
+        if (!preg_match('#https://github.com/(.*?)\.git#', $url, $matches)) {
+            $output->writeln("The <info>/code/</info> directory does not seem to be a Github repository.");
+            return;
+        }
+        $repository = $matches[1];
         $output->write("The current repository is: <info>" . $process->getOutput() . "</info>");
         $helper = $this->getHelper('question');
         $question = new ConfirmationQuestion('Is this correct? ', true);
@@ -129,7 +135,7 @@ class GenerateCommand extends Command
             $process = new Process("travis login");
             $process->setTty(true);
             $process->mustRun();
-            ProcessDecorator::run("travis enable", $output);
+            ProcessDecorator::run("travis enable -r " . escapeshellarg($repository), $output);
             ProcessDecorator::run("travis settings builds_only_with_travis_yml --enable", $output);
             ProcessDecorator::run(
                 "travis env set KBC_DEVELOPERPORTAL_URL https://apps-api.keboola.com --public",
