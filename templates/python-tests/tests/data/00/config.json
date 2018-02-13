@@ -1,0 +1,19 @@
+{
+  "storage": {
+    "input": {
+      "tables": [{
+        "source": "in.c-main.source",
+        "destination": "source.csv"
+      }]
+    },
+    "output": {
+      "tables": [{
+        "source": "destination.csv",
+        "destination": "out.c-main.destination"
+      }]
+    }
+  },
+  "parameters": {
+    "foo": "bar"
+  }
+}
