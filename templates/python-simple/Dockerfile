@@ -1,5 +1,5 @@
 FROM quay.io/keboola/docker-custom-python:latest
 
 COPY . /code/
-WORKDIR /code/
+WORKDIR /data/
 CMD ["python", "-u", "/code/main.py"]
