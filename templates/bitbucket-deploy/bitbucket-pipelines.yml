@@ -1,0 +1,17 @@
+options:
+  docker: true
+
+pipelines:
+  default:
+    - step:
+        script: 
+          - docker build . --tag=my-component
+          - docker images
+
+  tags:
+    '*':
+      - step:
+          script:
+          - docker build . --tag=my-component
+          - docker images
+          - ./deploy.sh
