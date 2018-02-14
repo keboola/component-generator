@@ -75,15 +75,14 @@ class GenerateCommand extends Command
             $template = $helper->ask($input, $output, $question);
 
             $output->writeln("You have wisely chosen <info>" . $template . "</info> template.");
-            $output->writeln("Copying template files.");
             $fs = new Filesystem();
             $finder = new Finder();
             $output->writeln("Copying common files.");
             /** @var SplFileInfo $file */
-            foreach ($finder->files()->in('/init-code/templates-common/')->files()->ignoreDotFiles(false) as $file) {
+            foreach ($finder->files()->in('/init-code/templates-common/')->ignoreDotFiles(false) as $file) {
                 if ($input->getOption('update')) {
                     $question = new ConfirmationQuestion(
-                        'Overwrite file <info>' . $file->getRelativePathname() . '</info> ? ',
+                        'Copy (and overwrite) file <info>' . $file->getRelativePathname() . '</info> ? ',
                         true
                     );
                     if (!$helper->ask($input, $output, $question)) {
@@ -94,14 +93,16 @@ class GenerateCommand extends Command
             }
 
             /** @var SplFileInfo $directory */
+            $output->writeln("Copying template files.");
             $finder = new Finder();
             foreach ($finder->files()->in('/init-code/templates/' . $template)->directories() as $directory) {
                 $fs->mkdir($directory->getRelativePathname());
             }
-            foreach ($finder->files()->in('/init-code/templates/' . $template)->files()->ignoreDotFiles(false) as $file) {
+            $finder = new Finder();
+            foreach ($finder->files()->in('/init-code/templates/' . $template)->ignoreDotFiles(false) as $file) {
                 if ($input->getOption('update')) {
                     $question = new ConfirmationQuestion(
-                        'Overwrite file <info>' . $file->getRelativePathname() . '</info> ? ',
+                        'Copy (and overwrite) file <info>' . $file->getRelativePathname() . '</info> ? ',
                         true
                     );
                     if (!$helper->ask($input, $output, $question)) {
@@ -129,44 +130,38 @@ class GenerateCommand extends Command
             }
         }
 
-        if (!$input->getOption('update')) {
-            $output->writeln("Setting up Travis integration.");
-            $output->writeln("Github login");
-            $process = new Process("travis login");
-            $process->setTty(true);
-            $process->mustRun();
-            ProcessDecorator::run("travis enable -r " . escapeshellarg($repository), $output);
-            ProcessDecorator::run("travis settings builds_only_with_travis_yml --enable", $output);
-            ProcessDecorator::run(
-                "travis env set KBC_DEVELOPERPORTAL_URL https://apps-api.keboola.com --public",
-                $output
-            );
-            ProcessDecorator::run("travis env set APP_IMAGE my-component --public", $output);
+        $output->writeln("Setting up Travis integration.");
+        $output->writeln("Github login");
+        $process = new Process("travis login");
+        $process->setTty(true);
+        $process->mustRun();
+        ProcessDecorator::run("travis enable -r " . escapeshellarg($repository), $output);
+        ProcessDecorator::run("travis settings builds_only_with_travis_yml --enable", $output);
+        ProcessDecorator::run("travis env set APP_IMAGE my-component --public", $output);
 
-            $question = new Question('Please enter <info>vendor id</info>: ');
-            $vendor = $helper->ask($input, $output, $question);
+        $question = new Question('Please enter <info>vendor id</info>: ');
+        $vendor = $helper->ask($input, $output, $question);
 
-            $question = new Question('Please enter <info>component id</info> (including vendor id): ');
-            $componentId = $helper->ask($input, $output, $question);
+        $question = new Question('Please enter <info>component id</info> (including vendor id): ');
+        $componentId = $helper->ask($input, $output, $question);
 
-            $question = new Question('Please enter service <info>account name</info>: ');
-            $serviceName = $helper->ask($input, $output, $question);
+        $question = new Question('Please enter service <info>account name</info>: ');
+        $serviceName = $helper->ask($input, $output, $question);
 
-            $question = new Question('Please enter service <info>account password</info>: ');
-            $servicePassword = $helper->ask($input, $output, $question);
-            (new Process(
-                "travis env set KBC_DEVELOPERPORTAL_VENDOR " . escapeshellarg($vendor) . " --public"
-            ))->mustRun();
-            (new Process(
-                "travis env set KBC_DEVELOPERPORTAL_APP " . escapeshellarg($componentId) . " --public"
-            ))->mustRun();
-            (new Process(
-                "travis env set KBC_DEVELOPERPORTAL_USERNAME " . escapeshellarg($serviceName) . " --public"
-            ))->mustRun();
-            (new Process(
-                "travis env set KBC_DEVELOPERPORTAL_PASSWORD " . escapeshellarg($servicePassword) . " --private"
-            ))->mustRun();
-        }
+        $question = new Question('Please enter service <info>account password</info>: ');
+        $servicePassword = $helper->ask($input, $output, $question);
+        (new Process(
+            "travis env set KBC_DEVELOPERPORTAL_VENDOR " . escapeshellarg($vendor) . " --public"
+        ))->mustRun();
+        (new Process(
+            "travis env set KBC_DEVELOPERPORTAL_APP " . escapeshellarg($componentId) . " --public"
+        ))->mustRun();
+        (new Process(
+            "travis env set KBC_DEVELOPERPORTAL_USERNAME " . escapeshellarg($serviceName) . " --public"
+        ))->mustRun();
+        (new Process(
+            "travis env set KBC_DEVELOPERPORTAL_PASSWORD " . escapeshellarg($servicePassword) . " --private"
+        ))->mustRun();
 
         $output->writeln("Repository configured, adding tag to trigger deploy.");
         $process = new Process("git tag");
