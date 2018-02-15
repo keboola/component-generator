@@ -10,9 +10,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
 	&& rm -r /var/lib/apt/lists/*
 
-RUN curl -sS https://getcomposer.org/installer | php \
-  && mv /code/composer.phar /usr/local/bin/composer
-
 COPY . /code/
 COPY docker/php.ini /usr/local/etc/php/php.ini
 COPY docker/composer-install.sh /tmp/composer-install.sh
