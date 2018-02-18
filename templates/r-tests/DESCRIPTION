@@ -1,0 +1,16 @@
+Package: my.component
+Type: Package
+Title: Some title
+Version: 0.0.1
+Date: 2016-05-02
+Author: Me
+Maintainer: Me
+Description: Some Description
+License: MIT + file LICENSE
+LazyData: TRUE
+Suggests:
+    testthat
+Depends:
+    methods,
+    keboola.r.docker.application
+RoxygenNote: 5.0.1

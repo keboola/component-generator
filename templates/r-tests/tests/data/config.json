@@ -1,0 +1,30 @@
+{
+    "storage": {
+        "input": {
+            "tables": [
+                {
+                    "source": "in.c-main.test",
+                    "destination": "source.csv",
+                    "columns": [],
+                    "where_values": [],
+                    "where_operator": "eq"
+                }
+            ]
+        },
+        "output": {
+            "tables": [
+                {
+                    "source": "result.csv",
+                    "destination": "out.c-main.test",
+                    "incremental": false,
+                    "primary_key": [],
+                    "delete_where_values": [],
+                    "delete_where_operator": "eq"
+                }
+            ]
+        }
+    },
+    "parameters": {
+        "multiplier": 2
+    }
+}
