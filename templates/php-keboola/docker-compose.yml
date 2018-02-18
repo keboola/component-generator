@@ -2,7 +2,9 @@ version: "2"
 services:
   # for development purposes
   dev:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile-tests
     volumes:
         - ./:/code
         - ./data:/data
