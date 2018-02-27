@@ -50,6 +50,7 @@
         ]
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "optimize-autoloader": true
     }
 }
