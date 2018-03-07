@@ -15,7 +15,6 @@ COPY docker/php-prod.ini /usr/local/etc/php/php.ini
 COPY docker/composer-install.sh /tmp/composer-install.sh
 
 RUN /tmp/composer-install.sh \
-	&& php composer.phar --no-interaction install \
-	&& rm -f composer.phar
+	&& php /usr/local/bin/composer.phar --no-interaction install
 
 CMD ["php", "/code/src/run.php"]
