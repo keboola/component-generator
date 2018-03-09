@@ -1,6 +1,6 @@
 # Keboola Component Skeleton Generator
-This tool generates a skeleton for a new [Keboola Connection]() component. See the [Development Guide]() for more details.
-You need [Docker]() to run this tool.
+This tool generates a skeleton for a new [Keboola Connection](https://connection.keboola.com/) component. See the [Development Guide](https://developers.keboola.com/extend/component/) for more details.
+You need [Docker](https://www.docker.com/) to run this tool.
 
 ## Running
 Run:
