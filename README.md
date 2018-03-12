@@ -1,13 +1,20 @@
 # Keboola Component Skeleton Generator
 This tool generates a skeleton for a new [Keboola Connection](https://connection.keboola.com/) component. See the [Development Guide](https://developers.keboola.com/extend/component/) for more details.
+
+This tool is working on a checked out **GitHub repository**. See the documentation for working with 
+[Bitbucket](https://developers.keboola.com/extend/component/deployment/#bitbucket-integration) or 
+[Gitlab](https://developers.keboola.com/extend/component/deployment/#gitlab-integration) repository.
 You need [Docker](https://www.docker.com/) to run this tool.
+
+If you don't need seting up Travis integration, you may simply copy the files from templates directories.
+In that case don't forget to run `git update-index --chmod=+x deploy.sh` to make the deployment scripts executable.
 
 ## Running
 Run:
 
-	docker run -i -t --volume=/path/to/repository/:/code/ quay.io/keboola/component-generator
+	docker run --rm -i -t --volume=/path/to/repository/:/code/ quay.io/keboola/component-generator
 
-The path `/path/to/repository/` is expected to contain an empty [Git]() repository.
+The path `/path/to/repository/` is expected to contain an empty [GitHub](https://github.com/) repository.
 
 Options:
 `--setup-only` -- only run setup of Travis deployment
@@ -15,7 +22,7 @@ Options:
 
 Pass options in the command line like this:
 
-	docker run -i -t --volume=/path/to/repository/:/code/ quay.io/keboola/component-generator --setup-only
+	docker run --rm -i -t --volume=/path/to/repository/:/code/ quay.io/keboola/component-generator --setup-only
 
 Setup of travis deployment does the following
 
