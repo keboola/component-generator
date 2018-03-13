@@ -1,9 +1,9 @@
 <?php
 
+require __DIR__ . "/vendor/autoload.php";
+
 use Keboola\AppSkeleton\GenerateCommand;
 use Symfony\Component\Console\Application;
-
-require "vendor/autoload.php";
 
 try {
     $application = new Application();
