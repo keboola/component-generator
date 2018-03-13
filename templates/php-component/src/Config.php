@@ -6,7 +6,7 @@ namespace MyComponent;
 
 use Keboola\Component\Config\BaseConfig;
 
-class MyConfig extends BaseConfig
+class Config extends BaseConfig
 {
     // implement your custom getters
 }

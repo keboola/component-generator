@@ -12,4 +12,9 @@ class Component extends BaseComponent
     {
         // @TODO implement
     }
+
+    protected function getConfigClass(): string
+    {
+        return Config::class;
+    }
 }
