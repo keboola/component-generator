@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         unzip \
 	&& rm -r /var/lib/apt/lists/* \
+	&& chmod +x /tmp/composer-install.sh \
 	&& /tmp/composer-install.sh
 
 ## Composer - deps always cached unless changed
