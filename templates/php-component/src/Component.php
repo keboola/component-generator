@@ -17,4 +17,9 @@ class Component extends BaseComponent
     {
         return Config::class;
     }
+
+    protected function getConfigDefinitionClass(): string
+    {
+        return ConfigDefinition::class;
+    }
 }
