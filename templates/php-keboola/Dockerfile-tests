@@ -1,6 +1,0 @@
-FROM my-component
-
-COPY docker/php.ini /usr/local/etc/php/php.ini
-
-RUN pecl install xdebug \
-  && docker-php-ext-enable xdebug
