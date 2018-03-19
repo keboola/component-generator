@@ -1,13 +1,14 @@
 #!/bin/bash
 set -e
 
-## Obtain the application repository and log in
+# Obtain the component repository and log in
 docker pull quay.io/keboola/developer-portal-cli-v2:latest
 export REPOSITORY=`docker run --rm  \
     -e KBC_DEVELOPERPORTAL_USERNAME \
     -e KBC_DEVELOPERPORTAL_PASSWORD \
     quay.io/keboola/developer-portal-cli-v2:latest \
     ecr:get-repository ${KBC_DEVELOPERPORTAL_VENDOR} ${KBC_DEVELOPERPORTAL_APP}`
+
 eval $(docker run --rm \
     -e KBC_DEVELOPERPORTAL_USERNAME \
     -e KBC_DEVELOPERPORTAL_PASSWORD \
@@ -20,10 +21,9 @@ docker tag ${APP_IMAGE}:latest ${REPOSITORY}:latest
 docker push ${REPOSITORY}:${BITBUCKET_TAG}
 docker push ${REPOSITORY}:latest
 
-
-if echo ${BITBUCKET_TAG} | grep -c '^[0-9]\+\.[0-9]\+\.[0-9]\+$'
+# Update the tag in Keboola Developer Portal -> Deploy to KBC
+if echo ${BITBUCKET_TAG} | grep -c '^v\?[0-9]\+\.[0-9]\+\.[0-9]\+$'
 then
-    # Deploy to KBC -> update the tag in Keboola Developer Portal (needs $KBC_DEVELOPERPORTAL_VENDOR & $KBC_DEVELOPERPORTAL_APP)
     docker run --rm \
         -e KBC_DEVELOPERPORTAL_USERNAME \
         -e KBC_DEVELOPERPORTAL_PASSWORD \
