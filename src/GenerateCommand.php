@@ -39,7 +39,7 @@ class GenerateCommand extends Command
             $output->writeln("The <info>/code/</info> directory does not seem to be a checked out git repository.");
             return;
         }
-        if (!preg_match('#github\.com[:/](.*)(?:\.git)?$#', $url, $matches)) {
+        if (!preg_match('#github\.com[:/](.*?)(?:\.git)?$#', $url, $matches)) {
             $output->writeln("The <info>/code/</info> directory does not seem to be a Github repository.");
             return;
         }
