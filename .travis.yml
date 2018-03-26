@@ -5,6 +5,9 @@ services:
 
 before_script:
   - docker build . --tag=component-generator
+  # php-component
+  - docker build ./templates/php-component --tag=template-php-component
+  - docker run --rm template-php-component composer ci
 
 after_success:
   - docker images
