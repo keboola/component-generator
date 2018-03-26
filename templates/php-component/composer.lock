@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "735102ac3d7136462c3542d5b35895b7",
+    "content-hash": "9cc5462b59df1bdff6ee6424b23cb8d8",
     "packages": [
         {
             "name": "keboola/php-component",
@@ -400,6 +400,32 @@
             "description": "This tool check syntax of PHP files about 20x faster than serial check.",
             "homepage": "https://github.com/JakubOnderka/PHP-Parallel-Lint",
             "time": "2018-02-24T15:31:20+00:00"
+        },
+        {
+            "name": "keboola/coding-standard",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/keboola/phpcs-standard.git",
+                "reference": "5cb926bca290c29109aa8aab966b36c2325bcfd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/keboola/phpcs-standard/zipball/5cb926bca290c29109aa8aab966b36c2325bcfd7",
+                "reference": "5cb926bca290c29109aa8aab966b36c2325bcfd7",
+                "shasum": ""
+            },
+            "require": {
+                "slevomat/coding-standard": "4.4.6",
+                "squizlabs/php_codesniffer": "^3.2"
+            },
+            "type": "phpcodesniffer-standard",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Keboola coding standard",
+            "time": "2018-03-26T08:50:33+00:00"
         },
         {
             "name": "keboola/php-temp",
