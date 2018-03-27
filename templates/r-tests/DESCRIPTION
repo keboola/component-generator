@@ -4,7 +4,7 @@ Title: Some title
 Version: 0.0.1
 Date: 2016-05-02
 Author: Me
-Maintainer: Me
+Maintainer: Me <me@example.com>
 Description: Some Description
 License: MIT + file LICENSE
 LazyData: TRUE
