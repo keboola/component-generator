@@ -9,14 +9,23 @@ before_script:
   - docker build ./templates/php-component --tag=template-php-component
   - docker run --rm template-php-component composer ci
 
+  # php-simple
+  - docker build ./templates/php-simple --tag=php-simple
+
   # python-tests
   - docker build ./templates/python-tests --tag=template-python-tests
   - docker run template-python-tests flake8
   - docker run template-python-tests python -m unittest discover
 
+  # python-simple
+  - docker build ./templates/python-simple --tag=python-simple
+
   # r-tests
   - docker build ./templates/r-tests --tag=template-r-tests
   - docker run -e KBC_DATADIR=/code/tests/data/ template-r-tests /code/tests/tests.sh
+
+  # r-simple
+  - docker build ./templates/r-simple --tag=r-simple
 
 after_success:
   - docker images

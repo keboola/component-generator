@@ -2,5 +2,5 @@
 
 export(CustomApplicationExample)
 exportClasses(CustomApplicationExample)
-import(my.component)
+import(keboola.r.docker.application)
 import(methods)
