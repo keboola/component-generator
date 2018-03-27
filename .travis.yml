@@ -14,6 +14,10 @@ before_script:
   - docker run template-python-tests flake8
   - docker run template-python-tests python -m unittest discover
 
+  # r-tests
+  - docker build ./templates/r-tests --tag=template-r-tests
+  - docker run -e KBC_DATADIR=/code/tests/data/ template-r-tests /code/tests/tests.sh
+
 after_success:
   - docker images
 
