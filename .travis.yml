@@ -9,6 +9,11 @@ before_script:
   - docker build ./templates/php-component --tag=template-php-component
   - docker run --rm template-php-component composer ci
 
+  # python-tests
+  - docker build ./templates/python-tests --tag=template-python-tests
+  - docker run template-python-tests flake8
+  - docker run template-python-tests python -m unittest discover
+
 after_success:
   - docker images
 
