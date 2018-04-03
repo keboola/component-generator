@@ -4,14 +4,16 @@ options:
 pipelines:
   default:
     - step:
-        script: 
-          - docker build . --tag=my-component
+        script:
+          - export APP_IMAGE=keboola-component
+          - docker build . --tag=$APP_IMAGE
           - docker images
 
   tags:
     '*':
       - step:
           script:
-          - docker build . --tag=my-component
+          - export APP_IMAGE=keboola-component
+          - docker build . --tag=$APP_IMAGE
           - docker images
           - ./deploy.sh
