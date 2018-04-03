@@ -4,6 +4,7 @@ services:
   - docker
 
 before_script:
+  - export APP_IMAGE=keboola-component
   - docker -v
   - docker build -t my-component .
   - docker run my-component flake8
