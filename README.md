@@ -38,7 +38,6 @@ Setup of travis deployment does the following:
 
 - enable building of the repository
 - build only if .travis.yml is present
-- set `APP_IMAGE` variable
 - set `KBC_DEVELOPERPORTAL_VENDOR` variable
 - set `KBC_DEVELOPERPORTAL_APP` variable
 - set `KBC_DEVELOPERPORTAL_USERNAME` variable
