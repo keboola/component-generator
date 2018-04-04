@@ -4,8 +4,9 @@ services:
   - docker
 
 before_script:
-  - docker build . --tag=my-component
-  - docker run -e KBC_DATADIR=/code/tests/data/ my-component /code/tests/tests.sh
+  - export APP_IMAGE=keboola-component
+  - docker build . --tag=$APP_IMAGE
+  - docker run -e KBC_DATADIR=/code/tests/data/ $APP_IMAGE /code/tests/tests.sh
 after_success:
   - docker images
 deploy:

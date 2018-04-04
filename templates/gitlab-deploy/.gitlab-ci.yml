@@ -2,7 +2,7 @@ image: docker:latest
 
 variables:
   DOCKER_DRIVER: overlay2
-  APP_IMAGE: my-component
+  APP_IMAGE: keboola-component
 
 services:
 - docker:dind
