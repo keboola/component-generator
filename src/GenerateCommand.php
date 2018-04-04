@@ -137,7 +137,6 @@ class GenerateCommand extends Command
         $process->mustRun();
         ProcessDecorator::run("travis enable -r " . escapeshellarg($repository), $output);
         ProcessDecorator::run("travis settings builds_only_with_travis_yml --enable", $output);
-        ProcessDecorator::run("travis env set APP_IMAGE my-component --public", $output);
 
         $question = new Question('Please enter <info>vendor id</info>: ');
         $vendor = $helper->ask($input, $output, $question);
