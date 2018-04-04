@@ -1,8 +1,4 @@
 {
-    "name": "fill-me-in/fill-me-in",
-    "license": "MIT",
-    "description": "fill-me-in",
-    "type": "project",
     "require": {
         "PHP": "^7.1",
         "keboola/php-component": "^2.0"
@@ -45,7 +41,7 @@
             "@tests"
         ],
         "ci": [
-            "@composer validate --no-check-all --strict",
+            "@composer validate --no-check-publish --no-check-all",
             "@build"
         ]
     },
