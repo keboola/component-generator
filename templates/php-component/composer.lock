@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "67112a8f8f7ef7379ebbd476fd922d0c",
+    "content-hash": "6fc7b60fde1c9ca6396de4daa319b0dd",
     "packages": [
         {
             "name": "keboola/php-component",
@@ -61,16 +61,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.0.6",
+            "version": "v4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "289eadd3771f7682ea2540e4925861c18ec5b4d0"
+                "reference": "7c19370ab04e9ac05b74a504198e165f5ccf6dd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/289eadd3771f7682ea2540e4925861c18ec5b4d0",
-                "reference": "289eadd3771f7682ea2540e4925861c18ec5b4d0",
+                "url": "https://api.github.com/repos/symfony/config/zipball/7c19370ab04e9ac05b74a504198e165f5ccf6dd8",
+                "reference": "7c19370ab04e9ac05b74a504198e165f5ccf6dd8",
                 "shasum": ""
             },
             "require": {
@@ -119,11 +119,11 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-04T16:43:51+00:00"
+            "time": "2018-03-19T22:35:49+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.0.6",
+            "version": "v4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -172,16 +172,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.0.6",
+            "version": "v4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "44a796d2ecc2a16a5fc8f2956a34ee617934d55f"
+                "reference": "c72995d9f5999b3fcdd8660c0c9690243252e1e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/44a796d2ecc2a16a5fc8f2956a34ee617934d55f",
-                "reference": "44a796d2ecc2a16a5fc8f2956a34ee617934d55f",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/c72995d9f5999b3fcdd8660c0c9690243252e1e1",
+                "reference": "c72995d9f5999b3fcdd8660c0c9690243252e1e1",
                 "shasum": ""
             },
             "require": {
@@ -217,20 +217,20 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-05T18:28:26+00:00"
+            "time": "2018-04-02T09:52:41+00:00"
         },
         {
             "name": "symfony/serializer",
-            "version": "v4.0.6",
+            "version": "v4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "0526b430c8548520fd5817f425d9a3d8a11a21e1"
+                "reference": "d0e9269101ccd978af971fd4d7a892848672bfa1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/0526b430c8548520fd5817f425d9a3d8a11a21e1",
-                "reference": "0526b430c8548520fd5817f425d9a3d8a11a21e1",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/d0e9269101ccd978af971fd4d7a892848672bfa1",
+                "reference": "d0e9269101ccd978af971fd4d7a892848672bfa1",
                 "shasum": ""
             },
             "require": {
@@ -295,7 +295,7 @@
             ],
             "description": "Symfony Serializer Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-19T12:18:43+00:00"
+            "time": "2018-03-19T17:30:36+00:00"
         }
     ],
     "packages-dev": [
@@ -403,16 +403,16 @@
         },
         {
             "name": "keboola/coding-standard",
-            "version": "1.0.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/phpcs-standard.git",
-                "reference": "5cb926bca290c29109aa8aab966b36c2325bcfd7"
+                "reference": "3cbf99b16b6445758dfe965943a4ac6778e32c41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/phpcs-standard/zipball/5cb926bca290c29109aa8aab966b36c2325bcfd7",
-                "reference": "5cb926bca290c29109aa8aab966b36c2325bcfd7",
+                "url": "https://api.github.com/repos/keboola/phpcs-standard/zipball/3cbf99b16b6445758dfe965943a4ac6778e32c41",
+                "reference": "3cbf99b16b6445758dfe965943a4ac6778e32c41",
                 "shasum": ""
             },
             "require": {
@@ -425,7 +425,7 @@
                 "MIT"
             ],
             "description": "Keboola coding standard",
-            "time": "2018-03-26T08:50:33+00:00"
+            "time": "2018-04-04T12:22:17+00:00"
         },
         {
             "name": "keboola/php-temp",
@@ -1916,16 +1916,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.0.6",
+            "version": "v4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "6ed08502a7c9559da8e60ea343bdbd19c3350b3e"
+                "reference": "d7dc1ee5dfe9f732cb1bba7310f5b99f2b7a6d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/6ed08502a7c9559da8e60ea343bdbd19c3350b3e",
-                "reference": "6ed08502a7c9559da8e60ea343bdbd19c3350b3e",
+                "url": "https://api.github.com/repos/symfony/process/zipball/d7dc1ee5dfe9f732cb1bba7310f5b99f2b7a6d25",
+                "reference": "d7dc1ee5dfe9f732cb1bba7310f5b99f2b7a6d25",
                 "shasum": ""
             },
             "require": {
@@ -1961,7 +1961,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-19T12:18:43+00:00"
+            "time": "2018-04-03T05:24:00+00:00"
         },
         {
             "name": "theseer/tokenizer",

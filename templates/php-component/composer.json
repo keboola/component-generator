@@ -5,11 +5,10 @@
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^1.0",
-        "keboola/coding-standard": "^1.0",
+        "keboola/coding-standard": "^2.0",
         "keboola/php-temp": "^1.0",
         "phpstan/phpstan-shim": "^0.9.2",
         "phpunit/phpunit": "^7.0",
-        "squizlabs/php_codesniffer": "~3.2",
         "symfony/process": "^4.0"
     },
     "autoload": {
