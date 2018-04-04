@@ -42,3 +42,14 @@ Setup of travis deployment does the following:
 - set `KBC_DEVELOPERPORTAL_APP` variable
 - set `KBC_DEVELOPERPORTAL_USERNAME` variable
 - set `KBC_DEVELOPERPORTAL_PASSWORD` variable
+
+## Development
+To run the component generator locally on a local repository, you need to map two volumes, e.g.:
+
+```
+docker build . -t component-generator-dev
+docker run --rm -it -v /path/to/genrator/:/init-code/ -v /path/to/repository/:/code/ --entrypoint=/bin/bash component-generator-dev
+```
+
+Then run the generator with `php /init-code/application.php`. The generator assumes that its code is located 
+in the `/init-code/` directory and the repository to be initialized is located in the `/code/` directory.
