@@ -135,6 +135,7 @@ class GenerateCommand extends Command
         $process = new Process("travis login");
         $process->setTty(true);
         $process->mustRun();
+        ProcessDecorator::run("travis sync", $output);
         ProcessDecorator::run("travis enable -r " . escapeshellarg($repository), $output);
         ProcessDecorator::run("travis settings builds_only_with_travis_yml --enable", $output);
 
