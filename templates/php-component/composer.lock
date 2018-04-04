@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed015015fe8c6003ab6125ba757b94cd",
+    "content-hash": "64cedc34a94a3853b4d8239cf46fa455",
     "packages": [
         {
             "name": "keboola/php-component",
@@ -403,16 +403,16 @@
         },
         {
             "name": "keboola/coding-standard",
-            "version": "1.0.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/phpcs-standard.git",
-                "reference": "5cb926bca290c29109aa8aab966b36c2325bcfd7"
+                "reference": "3cbf99b16b6445758dfe965943a4ac6778e32c41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/phpcs-standard/zipball/5cb926bca290c29109aa8aab966b36c2325bcfd7",
-                "reference": "5cb926bca290c29109aa8aab966b36c2325bcfd7",
+                "url": "https://api.github.com/repos/keboola/phpcs-standard/zipball/3cbf99b16b6445758dfe965943a4ac6778e32c41",
+                "reference": "3cbf99b16b6445758dfe965943a4ac6778e32c41",
                 "shasum": ""
             },
             "require": {
@@ -425,7 +425,7 @@
                 "MIT"
             ],
             "description": "Keboola coding standard",
-            "time": "2018-03-26T08:50:33+00:00"
+            "time": "2018-04-04T12:22:17+00:00"
         },
         {
             "name": "keboola/php-temp",
