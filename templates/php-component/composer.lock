@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6fc7b60fde1c9ca6396de4daa319b0dd",
+    "content-hash": "ae385303bddaadb187ab5fec5eab733f",
     "packages": [
         {
             "name": "keboola/php-component",
-            "version": "2.1.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/php-component.git",
-                "reference": "23eb9bf5cb76a90701e3e8f64d000c1693e03327"
+                "reference": "30ebe52229049f5082b3a567213622d302f36dae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/php-component/zipball/23eb9bf5cb76a90701e3e8f64d000c1693e03327",
-                "reference": "23eb9bf5cb76a90701e3e8f64d000c1693e03327",
+                "url": "https://api.github.com/repos/keboola/php-component/zipball/30ebe52229049f5082b3a567213622d302f36dae",
+                "reference": "30ebe52229049f5082b3a567213622d302f36dae",
                 "shasum": ""
             },
             "require": {
@@ -30,10 +30,10 @@
             "require-dev": {
                 "devedge/sami-github": "^1.0",
                 "jakub-onderka/php-parallel-lint": "^0.9",
+                "keboola/coding-standard": "^1.0",
+                "keboola/php-temp": "^1.0",
                 "phpstan/phpstan-shim": "^0.9.1",
-                "phpunit/phpunit": "^6.5",
-                "slevomat/coding-standard": "4.4.6",
-                "squizlabs/php_codesniffer": "^3.2"
+                "phpunit/phpunit": "^6.5"
             },
             "type": "project",
             "autoload": {
@@ -57,7 +57,7 @@
                 "docker",
                 "keboola"
             ],
-            "time": "2018-03-09T14:13:12+00:00"
+            "time": "2018-04-10T11:44:20+00:00"
         },
         {
             "name": "symfony/config",
