@@ -1,7 +1,7 @@
 {
     "require": {
         "PHP": "^7.1",
-        "keboola/php-component": "^2.0"
+        "keboola/php-component": "^3.0"
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^1.0",
