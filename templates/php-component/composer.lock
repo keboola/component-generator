@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae385303bddaadb187ab5fec5eab733f",
+    "content-hash": "c7f743f92ca22c5e3a2cb5ae9afd6848",
     "packages": [
         {
             "name": "keboola/php-component",
@@ -426,6 +426,43 @@
             ],
             "description": "Keboola coding standard",
             "time": "2018-04-04T12:22:17+00:00"
+        },
+        {
+            "name": "keboola/datadir-tests",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/keboola/datadir-tests.git",
+                "reference": "e7aefe431299014eccf653bfd3cf6623b7ec2526"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/keboola/datadir-tests/zipball/e7aefe431299014eccf653bfd3cf6623b7ec2526",
+                "reference": "e7aefe431299014eccf653bfd3cf6623b7ec2526",
+                "shasum": ""
+            },
+            "require": {
+                "keboola/php-temp": "^1.0",
+                "php": "^7.1",
+                "symfony/filesystem": "^4.0",
+                "symfony/finder": "^4.0",
+                "symfony/process": "^4.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "keboola/coding-standard": "^2.0",
+                "phpstan/phpstan-shim": "^0.9.2"
+            },
+            "bin": [
+                "src/datadir-tests"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Tool for functional testing of Keboola Connection components",
+            "time": "2018-04-16T12:04:59+00:00"
         },
         {
             "name": "keboola/php-temp",
