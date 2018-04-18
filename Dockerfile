@@ -20,7 +20,7 @@ RUN /init-code/composer-install.sh \
 	&& php composer.phar --no-interaction install \
 	&& rm -f composer.phar \ 
 	&& gem install travis \
-	&& git config --global user.email "devel@ekeboola.com" \
+	&& git config --global user.email "devel@keboola.com" \
 	&& git config --global user.name "Keboola Genesis"
 
 WORKDIR /code/
