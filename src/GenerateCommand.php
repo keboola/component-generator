@@ -168,7 +168,7 @@ class GenerateCommand extends Command
         $process->mustRun();
         $tags = $process->getOutput();
         if (!$tags) {
-            ProcessDecorator::run("git tag 0.0.1", $output);
+            ProcessDecorator::run("git tag 0.1.0", $output);
         } else {
             $tags = explode("\n", trim($tags));
             $tag = $tags[count($tags) - 1];
