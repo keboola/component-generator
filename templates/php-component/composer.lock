@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "keboola/php-component",
-            "version": "4.0.0",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/php-component.git",
-                "reference": "3af267b09c67a6b9a85ffa1cb909100ca5e607ac"
+                "reference": "7d26c14955e4be9b4c63ef97aa8f02515005efc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/php-component/zipball/3af267b09c67a6b9a85ffa1cb909100ca5e607ac",
-                "reference": "3af267b09c67a6b9a85ffa1cb909100ca5e607ac",
+                "url": "https://api.github.com/repos/keboola/php-component/zipball/7d26c14955e4be9b4c63ef97aa8f02515005efc1",
+                "reference": "7d26c14955e4be9b4c63ef97aa8f02515005efc1",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,7 @@
                 "docker",
                 "keboola"
             ],
-            "time": "2018-05-16T11:43:53+00:00"
+            "time": "2018-05-16T12:49:25+00:00"
         },
         {
             "name": "monolog/monolog",
