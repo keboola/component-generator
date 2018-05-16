@@ -132,12 +132,12 @@ class GenerateCommand extends Command
 
         $output->writeln("Setting up Travis integration.");
         $output->writeln("Github login");
-        $process = new Process("travis login");
+        $process = new Process("travis login --pro");
         $process->setTty(true);
         $process->mustRun();
-        ProcessDecorator::run("travis sync", $output);
-        ProcessDecorator::run("travis enable -r " . escapeshellarg($repository), $output);
-        ProcessDecorator::run("travis settings builds_only_with_travis_yml --enable", $output);
+        ProcessDecorator::run("travis sync --pro --force", $output);
+        ProcessDecorator::run("travis enable --pro --repo " . escapeshellarg($repository), $output);
+        ProcessDecorator::run("travis settings builds_only_with_travis_yml --enable --pro", $output);
 
         $question = new Question('Please enter <info>vendor id</info>: ');
         $vendor = $helper->ask($input, $output, $question);
@@ -151,16 +151,16 @@ class GenerateCommand extends Command
         $question = new Question('Please enter service <info>account password</info>: ');
         $servicePassword = $helper->ask($input, $output, $question);
         (new Process(
-            "travis env set KBC_DEVELOPERPORTAL_VENDOR " . escapeshellarg($vendor) . " --public"
+            "travis env set KBC_DEVELOPERPORTAL_VENDOR " . escapeshellarg($vendor) . " --public --pro"
         ))->mustRun();
         (new Process(
-            "travis env set KBC_DEVELOPERPORTAL_APP " . escapeshellarg($componentId) . " --public"
+            "travis env set KBC_DEVELOPERPORTAL_APP " . escapeshellarg($componentId) . " --public --pro"
         ))->mustRun();
         (new Process(
-            "travis env set KBC_DEVELOPERPORTAL_USERNAME " . escapeshellarg($serviceName) . " --public"
+            "travis env set KBC_DEVELOPERPORTAL_USERNAME " . escapeshellarg($serviceName) . " --public --pro"
         ))->mustRun();
         (new Process(
-            "travis env set KBC_DEVELOPERPORTAL_PASSWORD " . escapeshellarg($servicePassword) . " --private"
+            "travis env set KBC_DEVELOPERPORTAL_PASSWORD " . escapeshellarg($servicePassword) . " --private --pro"
         ))->mustRun();
 
         $output->writeln("Repository configured, adding tag to trigger deploy.");
@@ -181,7 +181,7 @@ class GenerateCommand extends Command
             }
         }
 
-        ProcessDecorator::run("travis open --print", $output);
+        ProcessDecorator::run("travis open --print --pro", $output);
         $output->writeln("Verify what I have done and do <info>git push</info> to deploy the application "
             . "or <info>git reset --hard origin/master</info> to rollback all changes.");
     }
