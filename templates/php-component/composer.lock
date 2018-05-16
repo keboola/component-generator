@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7f743f92ca22c5e3a2cb5ae9afd6848",
+    "content-hash": "a8bd6c7ed58ef2080c1be7fef84e4e5a",
     "packages": [
         {
             "name": "keboola/php-component",
@@ -403,16 +403,16 @@
         },
         {
             "name": "keboola/coding-standard",
-            "version": "2.0.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/phpcs-standard.git",
-                "reference": "3cbf99b16b6445758dfe965943a4ac6778e32c41"
+                "reference": "17b1820b408cfbeed4498c2c5b5c7a456bebe850"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/phpcs-standard/zipball/3cbf99b16b6445758dfe965943a4ac6778e32c41",
-                "reference": "3cbf99b16b6445758dfe965943a4ac6778e32c41",
+                "url": "https://api.github.com/repos/keboola/phpcs-standard/zipball/17b1820b408cfbeed4498c2c5b5c7a456bebe850",
+                "reference": "17b1820b408cfbeed4498c2c5b5c7a456bebe850",
                 "shasum": ""
             },
             "require": {
@@ -425,7 +425,7 @@
                 "MIT"
             ],
             "description": "Keboola coding standard",
-            "time": "2018-04-04T12:22:17+00:00"
+            "time": "2018-05-15T15:09:36+00:00"
         },
         {
             "name": "keboola/datadir-tests",
