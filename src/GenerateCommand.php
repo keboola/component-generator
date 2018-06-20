@@ -142,7 +142,7 @@ class GenerateCommand extends Command
         $question = new Question('Please enter <info>vendor id</info>: ');
         $vendor = $helper->ask($input, $output, $question);
 
-        $question = new Question('Please enter <info>component id</info> (including vendor id): ');
+        $question = new Question('Please enter <info>component id</info> (including vendor id, e.g. keboola.ex-gmail): ');
         $componentId = $helper->ask($input, $output, $question);
 
         $question = new Question('Please enter service <info>account name</info>: ');
