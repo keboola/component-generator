@@ -1,6 +1,6 @@
 {
     "require": {
-        "PHP": "^7.1",
+        "php": "^7.1",
         "keboola/php-component": "^4.1"
     },
     "require-dev": {
