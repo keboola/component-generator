@@ -8,7 +8,7 @@ use Keboola\Component\BaseComponent;
 
 class Component extends BaseComponent
 {
-    public function run(): void
+    protected function run(): void
     {
         // @TODO implement
     }
