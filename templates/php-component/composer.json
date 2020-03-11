@@ -4,7 +4,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
-        "keboola/php-component": "^8.0"
+        "keboola/php-component": "^8.1"
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^1.0",
