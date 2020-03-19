@@ -27,11 +27,14 @@ ENV LC_ALL=en_US.UTF-8
 ## Composer - deps always cached unless changed
 # First copy only composer files
 COPY composer.* /code/
+
 # Download dependencies, but don't run scripts or init autoloaders as the app is missing
 RUN composer install $COMPOSER_FLAGS --no-scripts --no-autoloader
-# copy rest of the app
+
+# Copy rest of the app
 COPY . /code/
-# run normal composer - all deps are cached already
+
+# Run normal composer - all deps are cached already
 RUN composer install $COMPOSER_FLAGS
 
 CMD ["php", "/code/src/run.php"]
