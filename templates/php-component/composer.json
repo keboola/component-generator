@@ -7,7 +7,7 @@
         "keboola/php-component": "^8.1"
     },
     "require-dev": {
-        "jakub-onderka/php-parallel-lint": "^1.0",
+        "php-parallel-lint/php-parallel-lint": "^1.2",
         "keboola/coding-standard": ">=7.0.2",
         "keboola/datadir-tests": "^4.0",
         "keboola/php-temp": "^2.0",
