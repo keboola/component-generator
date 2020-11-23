@@ -25,7 +25,8 @@ class GenerateCommand extends Command
             . 'of Keboola Connection application in the chosen language.'
         )
         ->addOption('setup-only', 's', InputOption::VALUE_NONE, 'Only setup deployment')
-        ->addOption('update', 'u', InputOption::VALUE_NONE, 'Update skeleton');
+        ->addOption('update', 'u', InputOption::VALUE_NONE, 'Update skeleton')
+        ->addOption('github-token', 't', InputOption::VALUE_OPTIONAL, 'GitHub API token');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -131,8 +132,12 @@ class GenerateCommand extends Command
         }
 
         $output->writeln("Setting up Travis integration.");
+
+        $output->writeln("");
         $output->writeln("Github login");
-        $process = new Process("travis login --pro");
+        $githubToken = $this->getGithubToken($input, $output);
+
+        $process = new Process("travis login --pro --github-token " . escapeshellarg($githubToken));
         $process->setTty(true);
         $process->mustRun();
         ProcessDecorator::run("travis sync --pro --force", $output);
@@ -184,5 +189,31 @@ class GenerateCommand extends Command
         ProcessDecorator::run("travis open --print --pro", $output);
         $output->writeln("Verify what I have done and do <info>git push</info> to deploy the application "
             . "or <info>git reset --hard origin/master</info> to rollback all changes.");
+    }
+
+    private function getGithubToken(InputInterface $input, OutputInterface $output): string
+    {
+        // Use CLI option if present
+        $cliToken = $input->getOption('github-token');
+        if ($cliToken) {
+            $output->writeln("Using GitHub API token from the command line.");
+            return $cliToken;
+        }
+
+        // Request token from user
+        $output->writeln("Please provide a GitHub token from the https://github.com/settings/tokens");
+        $output->writeln("For required scopes, see https://docs.travis-ci.com/user/github-oauth-scopes");
+
+        $helper = $this->getHelper('question');
+        $question = new Question('GitHub token:');
+        $githubToken = $helper->ask($input, $output, $question);
+
+        // Remove previous line and replace token with *****
+        if ($output->isDecorated()) {
+            $output->write("\x1B[1A\x1B[2K");
+            $output->writeln("GitHub token: *****");
+        }
+
+        return $githubToken;
     }
 }
