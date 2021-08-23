@@ -161,17 +161,10 @@ class CommandHelper
         return $template;
     }
 
-    public function copyTemplateFiles(string $template, string $ciTemplate): void
+    public function copyTemplateFiles(string $template): void
     {
         $this->output->writeln('Copying common files.');
         $this->copyFiles('/init-code/templates-common/');
-
-        $this->output->writeln('Copying CI template files.');
-        $ciTemplateDir = '/init-code/templates-ci/' . $template . '/'. $ciTemplate;
-        if (!is_dir($ciTemplateDir)) {
-            $ciTemplateDir = '/init-code/templates-ci/common/' . $ciTemplate;
-        }
-        $this->copyFiles($ciTemplateDir);
 
         $this->output->writeln('Copying template files.');
         $this->copyFiles('/init-code/templates/' . $template);

@@ -38,15 +38,22 @@ class GenerateCommand extends Command
 
             $repository = $commandHelper->getRepository();
 
-            $ciTemplate = null;
+            $template = 'common';
             if (!$input->getOption('setup-only')) {
                 $commandHelper->checkRepositoryIfEmpty();
 
                 $template = $commandHelper->chooseTemplate();
-                $ciTemplate = $commandHelper->chooseCiTemplate($template);
 
-                $commandHelper->copyTemplateFiles($template, $ciTemplate);
+                $commandHelper->copyTemplateFiles($template);
             }
+
+            $ciTemplate = $commandHelper->chooseCiTemplate($template);
+            $output->writeln('Copying CI template files.');
+            $ciTemplateDir = '/init-code/templates-ci/' . $template . '/'. $ciTemplate;
+            if (!is_dir($ciTemplateDir)) {
+                $ciTemplateDir = '/init-code/templates-ci/common/' . $ciTemplate;
+            }
+            $commandHelper->copyFiles($ciTemplateDir);
 
             $developerPortalCredentials = $commandHelper->getDeveloperPortalCredentials();
 
