@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - master
-    pull_request:
+  pull_request: null
 
 env:
   APP_IMAGE: keboola-component
