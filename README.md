@@ -2,13 +2,13 @@
 This tool generates a skeleton for a new [Keboola Connection](https://connection.keboola.com/) component. 
 See the [Development Guide](https://developers.keboola.com/extend/component/) for more details.
 
-This tool is working on a checked out **GitHub repository** and sets a Travis deployment. 
+This tool is working on a checked out **GitHub repository** and sets a `Travis` or `GitHub Actions` deployment. 
 See the documentation for working with 
 [Bitbucket](https://developers.keboola.com/extend/component/deployment/#bitbucket-integration) or 
 [Gitlab](https://developers.keboola.com/extend/component/deployment/#gitlab-integration) repository.
 You need [Docker](https://www.docker.com/) to run this tool.
 
-If you don't need setting up Travis integration, you may simply copy the files from templates directories.
+If you don't need setting up CI integration, you may simply copy the files from `templates-ci` directories.
 In that case don't forget to run `git update-index --chmod=+x deploy.sh` to make the deployment scripts executable.
 
 ## Running
@@ -27,14 +27,14 @@ Run:
 The path `/path/to/repository/` is expected to contain an empty [GitHub](https://github.com/) repository.
 
 Options:
-`--setup-only` -- only run setup of Travis deployment
-`--update` -- use to update existing repository, will ask about each file before copying
+- `--setup-only` -- only run setup of `Travis` or `GitHub Actions` deployment
+- `--update` -- use to update existing repository, will ask about each file before copying
 
 Pass options in the command line like this:
 
 	docker run --rm -i -t --volume=/path/to/repository/:/code/ quay.io/keboola/component-generator --setup-only
 
-Setup of travis deployment does the following:
+Setup of `travis` deployment does the following:
 
 - enable building of the repository
 - build only if .travis.yml is present
@@ -42,6 +42,13 @@ Setup of travis deployment does the following:
 - set `KBC_DEVELOPERPORTAL_APP` variable
 - set `KBC_DEVELOPERPORTAL_USERNAME` variable
 - set `KBC_DEVELOPERPORTAL_PASSWORD` variable
+
+Setup of `GitHub Actions` deployment does the following:
+
+- enable building of the repository
+- build only if .github/workflows/push.yml is present
+- github token must have repo/public_repo scope
+- set `KBC_DEVELOPERPORTAL_PASSWORD` secret
 
 ## Development
 To run the component generator locally on a local repository, you need to map two volumes, e.g.:
