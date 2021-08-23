@@ -1,0 +1,27 @@
+image: docker:latest
+
+variables:
+  DOCKER_DRIVER: overlay2
+  APP_IMAGE: keboola-component
+
+services:
+- docker:dind
+
+before_script:
+- docker info
+
+build-component:
+  stage: build
+  script:
+    - docker build . --tag=$APP_IMAGE
+
+deploy-component:
+  stage: deploy
+  script:
+    - docker build . --tag=$APP_IMAGE
+    - pwd
+    - ls -la
+    - export    
+    - ./deploy.sh
+  only:
+    - tags

@@ -1,0 +1,39 @@
+name: Github actions
+
+on:
+  push:
+    branches:
+      - master
+    pull_request:
+
+env:
+  APP_IMAGE: keboola-component
+  KBC_DEVELOPERPORTAL_VENDOR: "{{env(KBC_DEVELOPERPORTAL_VENDOR)}}"
+  KBC_DEVELOPERPORTAL_APP: "{{env(KBC_DEVELOPERPORTAL_APP)}}"
+  KBC_DEVELOPERPORTAL_USERNAME: "{{env(KBC_DEVELOPERPORTAL_USERNAME)}}"
+jobs:
+  Push:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: 'Check out the repo'
+        uses: actions/checkout@v2
+      -
+        name: 'Build image'
+        run: docker build -t ${{env.APP_IMAGE}} .
+      -
+        name: 'Run tests'
+        run: |
+          docker run ${{env.APP_IMAGE}} flake8
+          docker run ${{env.APP_IMAGE}} python -m unittest discover
+      -
+        name: 'Push test image to ECR'
+        uses: keboola/action-push-to-ecr@master
+        with:
+          vendor: ${{env.KBC_DEVELOPERPORTAL_VENDOR}}
+          app_id: ${{env.KBC_DEVELOPERPORTAL_APP}}
+          username: ${{env.KBC_DEVELOPERPORTAL_USERNAME}}
+          password: ${{secrets.KBC_DEVELOPERPORTAL_PASSWORD}}
+          tag: test
+          push_latest: false
+          source_image: ${{env.APP_IMAGE}}
