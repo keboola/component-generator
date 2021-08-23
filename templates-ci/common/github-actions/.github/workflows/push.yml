@@ -3,6 +3,7 @@ name: Github actions
 on:
   push:
     branches:
+      - main
       - master
     pull_request:
 
