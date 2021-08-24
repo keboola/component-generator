@@ -66,7 +66,10 @@ class SetupCI
                     }
                 }
             );
-            file_put_contents($file->getPathname(), Yaml::dump($config, 10));
+            file_put_contents(
+                $file->getPathname(),
+                Yaml::dump($config, 10, 4, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK)
+            );
         }
     }
 
@@ -138,7 +141,7 @@ class SetupCI
             case 'KBC_DEVELOPERPORTAL_VENDOR':
                 return $developerPortalCredentials->getVendorId();
             case 'DOCKERHUB_USER':
-                return $dockerhubCredentials->getUser();
+                return (string) $dockerhubCredentials->getUser();
             default:
                 return $env;
         }
