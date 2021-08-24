@@ -74,6 +74,12 @@ class CommandHelper
         $question = new Question('Please enter service <info>account password</info>: ');
         $servicePassword = $this->questionHelper->ask($this->input, $this->output, $question);
 
+        // Remove previous line and replace password with *****
+        if ($this->output->isDecorated()) {
+            $this->output->write("\x1B[1A\x1B[2K");
+            $this->output->writeln('Please enter service <info>account password</info>:  *****');
+        }
+
         return new DeveloperPortalCredentials($vendor, $componentId, $serviceName, $servicePassword);
     }
 
