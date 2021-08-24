@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Keboola\AppSkeleton;
 
+use Keboola\AppSkeleton\Credentials\DeveloperPortalCredentials;
+use Keboola\AppSkeleton\Credentials\DockerhubCredentials;
 use Keboola\AppSkeleton\Exception\FailedException;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
@@ -81,6 +83,28 @@ class CommandHelper
         }
 
         return new DeveloperPortalCredentials($vendor, $componentId, $serviceName, $servicePassword);
+    }
+
+    public function getDockerhubCredentials(): DockerhubCredentials
+    {
+        $this->output->writeln('Dockerhub credentials');
+
+        $question = new Question('Please enter <info>Dockerhub username</info> (keep empty for skip): ');
+        $user = $this->questionHelper->ask($this->input, $this->output, $question);
+
+        $password = null;
+        if ($user) {
+            $question = new Question('Please enter <info>Dockerhub password</info>: ');
+            $password = $this->questionHelper->ask($this->input, $this->output, $question);
+
+            // Remove previous line and replace password with *****
+            if ($this->output->isDecorated()) {
+                $this->output->write("\x1B[1A\x1B[2K");
+                $this->output->writeln('Please enter <info>Dockerhub password</info>: *****');
+            }
+        }
+
+        return new DockerhubCredentials($user, $password);
     }
 
     public function getRepository(): string

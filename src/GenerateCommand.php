@@ -61,10 +61,22 @@ class GenerateCommand extends Command
 
             switch ($ciTemplate) {
                 case SetupCI::CI_TRAVIS:
-                    SetupCI::setupTravis($output, $repository, $developerPortalCredentials, $githubToken);
+                    SetupCI::setupTravis(
+                        $output,
+                        $repository,
+                        $developerPortalCredentials,
+                        $githubToken
+                    );
                     break;
                 case SetupCI::CI_GH_ACTIONS:
-                    SetupCI::setupGHActions($output, $repository, $developerPortalCredentials, $githubToken);
+                    $dockerhubCredentials = $commandHelper->getDockerhubCredentials();
+                    SetupCI::setupGHActions(
+                        $output,
+                        $repository,
+                        $dockerhubCredentials,
+                        $developerPortalCredentials,
+                        $githubToken
+                    );
                     break;
             }
 

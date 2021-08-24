@@ -16,4 +16,3 @@ try {
 } catch (Throwable $e) {
     echo 'An error occurred ' . $e->getMessage();
 }
-

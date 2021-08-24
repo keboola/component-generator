@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Keboola\AppSkeleton;
+namespace Keboola\AppSkeleton\Credentials;
 
 class DeveloperPortalCredentials
 {
