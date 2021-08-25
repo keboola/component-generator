@@ -101,6 +101,7 @@ jobs:
 
   deploy:
     needs:
+      - build
       - tests
       - tests-in-kbc
     runs-on: ubuntu-latest
