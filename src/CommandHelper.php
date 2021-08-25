@@ -103,7 +103,7 @@ class CommandHelper
         $password = null;
         if ($user) {
             $question = new Question('Please enter <info>Dockerhub password</info>: ');
-            $question->setValidator(fn($v) => !empty($v));
+            $this->setQuestionValidator($question, 'Dockerhub password');
             $password = $this->questionHelper->ask($this->input, $this->output, $question);
 
             // Remove previous line and replace password with *****
