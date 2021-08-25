@@ -7,6 +7,7 @@ namespace Keboola\AppSkeleton;
 use Keboola\AppSkeleton\Credentials\DeveloperPortalCredentials;
 use Keboola\AppSkeleton\Credentials\DockerhubCredentials;
 use Keboola\AppSkeleton\Exception\FailedException;
+use RuntimeException;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -48,6 +49,7 @@ class CommandHelper
         $this->output->writeln('For required scopes, see https://docs.travis-ci.com/user/github-oauth-scopes');
 
         $question = new Question('GitHub token:');
+        $this->setQuestionValidator($question, 'GitHub token');
         $githubToken = $this->questionHelper->ask($this->input, $this->output, $question);
 
         // Remove previous line and replace token with *****
@@ -62,18 +64,24 @@ class CommandHelper
     public function getDeveloperPortalCredentials(): DeveloperPortalCredentials
     {
         $this->output->writeln('Developer Portal credentials');
+
         $question = new Question('Please enter <info>vendor id</info>: ');
+        $this->setQuestionValidator($question, 'vendor id');
         $vendor = $this->questionHelper->ask($this->input, $this->output, $question);
 
         $question = new Question(
             'Please enter <info>component id</info> (including vendor id, e.g. keboola.ex-gmail): '
         );
+        $this->setQuestionValidator($question, 'component id');
+
         $componentId = $this->questionHelper->ask($this->input, $this->output, $question);
 
         $question = new Question('Please enter service <info>account name</info>: ');
+        $this->setQuestionValidator($question, 'account name');
         $serviceName = $this->questionHelper->ask($this->input, $this->output, $question);
 
         $question = new Question('Please enter service <info>account password</info>: ');
+        $this->setQuestionValidator($question, 'account password');
         $servicePassword = $this->questionHelper->ask($this->input, $this->output, $question);
 
         // Remove previous line and replace password with *****
@@ -95,6 +103,7 @@ class CommandHelper
         $password = null;
         if ($user) {
             $question = new Question('Please enter <info>Dockerhub password</info>: ');
+            $question->setValidator(fn($v) => !empty($v));
             $password = $this->questionHelper->ask($this->input, $this->output, $question);
 
             // Remove previous line and replace password with *****
@@ -265,5 +274,16 @@ class CommandHelper
                 $this->output->writeln('Don\'t know how to tag based on <info>$tag</info>, create a new git tag.');
             }
         }
+    }
+
+    private function setQuestionValidator(Question $question, string $type): void
+    {
+        $question->setValidator(function ($v) use ($type) {
+            if (empty($v)) {
+                throw new RuntimeException(sprintf('Please fill in "%s".', $type));
+            }
+
+            return $v;
+        });
     }
 }
