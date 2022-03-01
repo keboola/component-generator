@@ -1,4 +1,4 @@
-FROM php:7-cli
+FROM php:8-cli
 
 COPY . /code/
 WORKDIR /data/
