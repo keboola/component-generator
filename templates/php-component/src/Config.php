@@ -11,6 +11,6 @@ class Config extends BaseConfig
     // @todo implement your custom getters
     public function getFoo(): string
     {
-        return $this->getValue(['parameters', 'foo']);
+        return $this->getStringValue(['parameters', 'foo']);
     }
 }

@@ -1,0 +1,99 @@
+name: GitHub Actions
+on: [push]
+env:
+  AWS_ACCESS_KEY_ID: "AKIAQ4QRYXTAHUTEWJUR"
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  APP_IMAGE: keboola/component-generator
+
+  QUAY_USERNAME: "keboola+gh_actions_component_generator"
+  QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+
+jobs:
+  PHPTests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Print Docker version
+        run: |
+          docker -v
+      
+      - name: PHP Component
+        run: |
+          docker build ./templates/php-component --tag=template-php-component
+          docker run --rm template-php-component composer ci
+
+      - name: PHP Simple
+        run: |
+          docker build ./templates/php-simple --tag=php-simple
+
+  PythonTests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Print Docker version
+        run: |
+          docker -v
+
+      - name: Python tests
+        run: |
+          docker build ./templates/python-tests --tag=template-python-tests
+          docker run template-python-tests flake8
+          docker run template-python-tests python -m unittest discover
+
+      - name: Python Simple
+        run: |
+          docker build ./templates/python-simple --tag=python-simple
+
+  RTests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Print Docker version
+        run: |
+          docker -v
+
+      - name: R tests
+        run: |
+          docker build ./templates/r-tests --tag=template-r-tests
+          docker run -e KBC_DATADIR=/code/tests/data/ template-r-tests /code/tests/tests.sh
+
+      - name: R Simple
+        run: |
+          docker build ./templates/r-simple --tag=r-simple
+
+  Deploy:
+    runs-on: ubuntu-latest
+    outputs:
+      is_semantic_tag: ${{ steps.tag.outputs.is_semantic_tag }}
+    needs:
+      - PHPTests
+      - PythonTests
+      - RTests
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Print Docker version
+        run: |
+          docker -v
+
+      - name: Build
+        run: docker build . --tag=component-generator
+
+      - name: Set image tag
+        id: tag
+        run: |
+          TAG="${GITHUB_REF##*/}"
+          IS_SEMANTIC_TAG=$(echo "$TAG" | grep -q '^v\?[0-9]\+\.[0-9]\+\.[0-9]\+$' && echo true || echo false)
+          echo "Tag = '$TAG', is semantic tag = '$IS_SEMANTIC_TAG'"
+          echo "::set-output name=is_semantic_tag::$IS_SEMANTIC_TAG"
+
+      - name: Deploy
+        if: startsWith(github.ref, 'refs/tags/') && steps.tag.outputs.is_semantic_tag == 'true'
+        run: ./deploy.sh
