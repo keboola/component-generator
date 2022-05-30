@@ -51,3 +51,7 @@ docker run --rm -it -v /path/to/genrator/:/init-code/ -v /path/to/repository/:/c
 
 Then run the generator with `php /init-code/application.php`. The generator assumes that its code is located 
 in the `/init-code/` directory and the repository to be initialized is located in the `/code/` directory.
+
+## License
+
+MIT licensed, see [LICENSE](./LICENSE) file.
