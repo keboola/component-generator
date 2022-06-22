@@ -60,14 +60,6 @@ class GenerateCommand extends Command
             $githubToken = $commandHelper->getGithubToken();
 
             switch ($ciTemplate) {
-                case SetupCI::CI_TRAVIS:
-                    SetupCI::setupTravis(
-                        $output,
-                        $repository,
-                        $developerPortalCredentials,
-                        $githubToken
-                    );
-                    break;
                 case SetupCI::CI_GH_ACTIONS:
                     $dockerhubCredentials = $commandHelper->getDockerhubCredentials();
                     SetupCI::setupGHActions(

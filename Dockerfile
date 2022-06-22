@@ -37,11 +37,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends gh \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Travis CLI
-RUN gem install travis \
-    # Install shell completion
-    && echo "y" | travis
-
 RUN git config --global user.email "devel@keboola.com" \
     && git config --global user.name "Keboola Genesis"
 

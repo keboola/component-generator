@@ -2,7 +2,7 @@
 This tool generates a skeleton for a new [Keboola Connection](https://connection.keboola.com/) component. 
 See the [Development Guide](https://developers.keboola.com/extend/component/) for more details.
 
-This tool is working on a checked out **GitHub repository** and sets a `Travis` or `GitHub Actions` deployment. 
+This tool is working on a checked out **GitHub repository** and sets `GitHub Actions` deployment. 
 See the documentation for working with 
 [Bitbucket](https://developers.keboola.com/extend/component/deployment/#bitbucket-integration) or 
 [Gitlab](https://developers.keboola.com/extend/component/deployment/#gitlab-integration) repository.
@@ -27,21 +27,12 @@ Run:
 The path `/path/to/repository/` is expected to contain an empty [GitHub](https://github.com/) repository.
 
 Options:
-- `--setup-only` -- only run setup of `Travis` or `GitHub Actions` deployment
+- `--setup-only` -- only run setup of `GitHub Actions` deployment
 - `--update` -- use to update existing repository, will ask about each file before copying
 
 Pass options in the command line like this:
 
 	docker run --rm -i -t --volume=/path/to/repository/:/code/ quay.io/keboola/component-generator --setup-only
-
-Setup of `travis` deployment does the following:
-
-- enable building of the repository
-- build only if .travis.yml is present
-- set `KBC_DEVELOPERPORTAL_VENDOR` variable
-- set `KBC_DEVELOPERPORTAL_APP` variable
-- set `KBC_DEVELOPERPORTAL_USERNAME` variable
-- set `KBC_DEVELOPERPORTAL_PASSWORD` variable
 
 Setup of `GitHub Actions` deployment does the following:
 

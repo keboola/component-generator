@@ -14,8 +14,6 @@ use Symfony\Component\Yaml\Yaml;
 
 class SetupCI
 {
-    public const CI_TRAVIS = 'travis';
-
     public const CI_GH_ACTIONS = 'github-actions';
 
     public static function setupGHActions(
@@ -71,61 +69,6 @@ class SetupCI
                 Yaml::dump($config, 10, 4, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK)
             );
         }
-    }
-
-    public static function setupTravis(
-        OutputInterface $output,
-        string $repository,
-        DeveloperPortalCredentials $developerPortalCredentials,
-        string $githubToken
-    ): void {
-        $output->writeln('Setting up Travis integration.');
-
-        $output->writeln('');
-
-        $process = new Process('travis login --pro --github-token ' . escapeshellarg($githubToken));
-        $process->setTty(true);
-        $process->mustRun();
-        ProcessDecorator::run('travis sync --pro --force', $output);
-        ProcessDecorator::run('travis enable --pro --repo ' . escapeshellarg($repository), $output);
-        ProcessDecorator::run('travis settings builds_only_with_travis_yml --enable --pro', $output);
-
-        $travisEnvs = [
-            [
-                'env' => 'KBC_DEVELOPERPORTAL_VENDOR',
-                'value' => $developerPortalCredentials->getVendorId(),
-                'visibility' => 'public',
-            ],
-            [
-                'env' => 'KBC_DEVELOPERPORTAL_APP',
-                'value' => $developerPortalCredentials->getComponentId(),
-                'visibility' => 'public',
-            ],
-            [
-                'env' => 'KBC_DEVELOPERPORTAL_USERNAME',
-                'value' => $developerPortalCredentials->getServiceAccountName(),
-                'visibility' => 'public',
-            ],
-            [
-                'env' => 'KBC_DEVELOPERPORTAL_PASSWORD',
-                'value' => $developerPortalCredentials->getServiceAccountPassword(),
-                'visibility' => 'private',
-            ],
-        ];
-
-        foreach ($travisEnvs as $travisEnv) {
-            $process = new Process(
-                sprintf(
-                    'travis env set %s %s --%s --pro',
-                    $travisEnv['env'],
-                    escapeshellarg($travisEnv['value']),
-                    $travisEnv['visibility'],
-                )
-            );
-            $process->mustRun();
-        }
-
-        ProcessDecorator::run('travis open --print --pro', $output);
     }
 
     private static function convertEnv(
