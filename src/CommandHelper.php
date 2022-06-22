@@ -46,7 +46,6 @@ class CommandHelper
 
         // Request token from user
         $this->output->writeln('Please provide a GitHub token from the https://github.com/settings/tokens');
-        $this->output->writeln('For required scopes, see https://docs.travis-ci.com/user/github-oauth-scopes');
 
         $question = new Question('GitHub token:');
         $this->setQuestionValidator($question, 'GitHub token');
